@@ -15,5 +15,5 @@ app = Celery(
 def udpate_student_using_pickle(students):
     # students is <class 'mongoengine.queryset.queryset.QuerySet'>
     print(type(students), students, len(students))
-    students.update(age=(students[0].age + 1))
+    students.update(age=(students[0].age + 1)) # We can call update function directly
     return students
