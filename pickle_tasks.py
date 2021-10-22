@@ -1,6 +1,4 @@
-# import json
-# import celeryconfig
-import student
+import student  # We need to import student here. It seems useless but without it, we cannot call update function in line 16
 from celery import Celery
 
 app = Celery(
