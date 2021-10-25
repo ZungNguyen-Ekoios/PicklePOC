@@ -1,7 +1,17 @@
 import json 
-from pickle_tasks import udpate_student_using_pickle
+from pickle_tasks import udpate_student_using_pickle, test_exception
 from json_tasks import udpate_student_using_json
 from student import find_students
+
+def testPickleException():
+    try:
+        result = test_exception.apply_async(
+            args=["Nguyen"], queue="pickle_queue", serializer="pickle"
+        ).get()
+        print("Test exception:", result)
+    except Exception as e:
+        print(e)
+    return
 
 def testPickle():
     students = find_students(_name="Nguyen")
@@ -21,5 +31,6 @@ def testJson():
     return
 
 if __name__ == "__main__":
-    testPickle()
-    testJson()
+    testPickleException()
+    # testPickle()
+    # testJson()
