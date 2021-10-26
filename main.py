@@ -1,16 +1,16 @@
-import json 
+import mongoengine
 from pickle_tasks import udpate_student_using_pickle, test_exception
 from json_tasks import udpate_student_using_json
-from student import find_students
+from student import Student, find_students
 
 def testPickleException():
     try:
         result = test_exception.apply_async(
-            args=["Nguyen"], queue="pickle_queue", serializer="pickle"
+            args=["ABC"], queue="pickle_queue", serializer="pickle"
         ).get()
         print("Test exception:", result)
-    except Exception as e:
-        print(e)
+    except mongoengine.errors.DoesNotExist as e:
+        print(e, type(e))
     return
 
 def testPickle():

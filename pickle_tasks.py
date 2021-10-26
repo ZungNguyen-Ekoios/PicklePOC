@@ -1,5 +1,6 @@
 import student  # We need to import student here. It seems useless but without it, we cannot call update function in line 16
-from student import find_students
+import mongoengine
+from student import Student, find_students, raise_exception
 from celery import Celery
 
 app = Celery(
@@ -21,5 +22,5 @@ def udpate_student_using_pickle(students):
 @app.task
 def test_exception(name):
     # students is <class 'mongoengine.queryset.queryset.QuerySet'>
-    students = find_students(name)
-    raise Exception(students[0])
+    student = raise_exception(name)
+    return student

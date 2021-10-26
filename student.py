@@ -26,6 +26,10 @@ def find_students(_name):
     students = Student.objects(name= _name)
     return students
 
+def raise_exception(_name):
+    student = Student.objects.get(name=_name)
+    return student
+
 def add_student():
     student = Student()
     student.name = "Nguyen"
